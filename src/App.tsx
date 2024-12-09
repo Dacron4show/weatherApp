@@ -1,14 +1,20 @@
 import "./App.css";
+import Search from "./Components/Search";
+import Weather from "./Components/Weather";
+import { appStore } from "./Store/appStore";
 
 function App() {
+  const { weather } = appStore();
   return (
-    <div className="bg-green-300 flex-row h-screen justify-center items-center p-20">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rem molestias
-      laborum excepturi? Nam, explicabo consequuntur? Amet maxime quos dicta a
-      sunt, modi esse laborum, soluta reprehenderit culpa, debitis ullam odit.
-      Libero natus dolorum amet fugiat facilis harum nam accusamus modi vero hic
-      neque perspiciatis, nulla soluta a rerum eos numquam? Consequatur repellat
-      architecto iste esse blanditiis sequi, debitis qui rerum?l
+    <div
+      className={`${
+        weather?.current?.condition?.text === "Mist"
+          ? "bg-gray-400"
+          : "bg-blue-300"
+      } flex flex-col gap-14 min-h-screen p-14`}
+    >
+      <Search />
+      <Weather />
     </div>
   );
 }
