@@ -44,13 +44,13 @@ export const appStore = create<myStore>((set, get) => ({
       });
       const { latitude, longitude } = location.coords;
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${
+        `https://api.weatherapi.com/v1/current.json?key=${
           import.meta.env.VITE_WEATHER_API_KEY
         }&q=${latitude}, ${longitude}`
       );
       console.log(response);
       if (!response.ok) {
-        throw new Error(`${response.status}`);
+        throw new Error(`HTTP error: ${response.status}`);
       }
       const data = await response.json();
       set(() => ({ weather: data }));
@@ -63,13 +63,13 @@ export const appStore = create<myStore>((set, get) => ({
     const { city } = get();
     try {
       const response = await fetch(
-        `http://api.weatherapi.com/v1/current.json?key=${
+        `https://api.weatherapi.com/v1/current.json?key=${
           import.meta.env.VITE_WEATHER_API_KEY
         }&q=${city}`
       );
       console.log(response);
       if (!response.ok) {
-        throw new Error(`${response.status}`);
+        throw new Error(`HTTP error:${response.status}`);
       }
       const data = await response.json();
       set(() => ({ weather: data }));
