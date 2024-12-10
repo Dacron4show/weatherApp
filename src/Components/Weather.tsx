@@ -16,7 +16,7 @@ import { useEffect } from "react";
 const weatherIcons = {
   Sunny: <Sun className="w-24 h-24 text-yellow-500 drop-shadow-lg" />,
   "Partly cloudy": (
-    <CloudSun className="w-24 h-24 text-yellow-200 drop-shadow-lg" />
+    <CloudSun className="w-24 h-24 text-gray-400 drop-shadow-lg" />
   ),
   Cloudy: <Cloud className="w-24 h-24 drop-shadow-lg" />,
   Overcast: <Cloud className="w-24 h-24 drop-shadow-lg" />,
@@ -39,10 +39,10 @@ export default function Weather() {
   const weatherCondition = weather?.current?.condition?.text;
   const WeatherIcon = weatherIcons[
     weatherCondition as keyof typeof weatherIcons
-  ] || <Cloud />;
+  ] || <Cloud className="w-24 h-24 " />;
 
   return (
-    <div className="flex text-white flex-col gap-10 text-center items-center ">
+    <div className="flex text-black flex-col gap-6  sm:gap-10 text-center items-center ">
       {WeatherIcon}
       <h3
         className="text-8xl
@@ -62,7 +62,7 @@ export default function Weather() {
 bg-white/20 backdrop-blur-2xl border border-white/10 p-3 rounded-lg shadow-md"
       >
         {" "}
-        <div className="flex gap-14 ">
+        <div className="flex gap-8 sm:gap-14 ">
           <div className="flex flex-col items-center gap-2 ">
             <WindIcon className="text-center" />
             <p className="text-lg">
@@ -79,8 +79,8 @@ bg-white/20 backdrop-blur-2xl border border-white/10 p-3 rounded-lg shadow-md"
           </div>
           <div className="flex flex-col items-center gap-2 ">
             <ThermometerSun />
-            <p className="text-lg">{weather?.current?.temp_c}°</p>
-            <p>Temperature</p>
+            <p className="text-lg">{weather?.current?.heatindex_c}°</p>
+            <p>Heat index</p>
           </div>
         </div>
       </div>
